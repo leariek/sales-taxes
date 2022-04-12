@@ -10,18 +10,26 @@ class ProductTest {
     private int quantity;
     private double price;
     private Product product;
+    private Double applicableTax;
 
     @BeforeEach
     void setUp() {
         quantity = 1;
         description = "bottle of perfume";
         price = 6.99;
-        product = new Product(quantity, description, price);
+        product = new StandardTaxProduct(quantity, description, price);
     }
 
     @AfterEach
     void tearDown() {
 
+    }
+
+    @Test
+    void setApplicableTax(){
+        Double setApplicableTax = 1.50;
+        product.setApplicableTax(setApplicableTax);
+        assertEquals(setApplicableTax, product.getApplicableTax());
     }
 
     @Test
@@ -42,18 +50,10 @@ class ProductTest {
     @Test
     void getIsImported() {
         String importedDescription = "imported music CD";
-        Product importedProduct = new Product(quantity, importedDescription, price);
+        Product importedProduct = new StandardTaxProduct(quantity, importedDescription, price);
 
         assertTrue(importedProduct.getIsImported());
         assertFalse(product.getIsImported());
     }
 
-    @Test
-    void getIsExempt() {
-        String exemptDescription = "box of chocolates";
-        Product exemptProduct = new Product(quantity, exemptDescription, price);
-
-        assertTrue(exemptProduct.getIsExempt());
-        assertFalse(product.getIsExempt());
-    }
 }

@@ -1,30 +1,33 @@
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
-public class Product {
+public abstract class Product {
 
-    private static final List<String> EXEMPT_PRODUCTS = Arrays.asList("book","chocolates","pills" );
+    static final String IMPORTED = "imported";
 
     private String description;
     private Double price;
     private int quantity;
     private Boolean isImported = false;
-    private Boolean isExempt = false;
+    private Double taxRate = 0.0;
+    private Double applicableTax = 0.0;
 
     public Product(int quantity, String description, Double price) {
         this.quantity = quantity;
         this.description = description;
         this.price = price;
-        defineType(description);
+        defineType(this.description);
     }
 
     private void defineType(String description) {
-        if(EXEMPT_PRODUCTS.stream().anyMatch(d -> description.contains(d))) {
-            this.isExempt = true;
-        }
-        if(description.contains("imported")) {
+        if(description.contains(IMPORTED)) {
             this.isImported = true;
         }
+    }
+
+    public void setApplicableTax(Double applicableTax) {
+        this.applicableTax = applicableTax;
     }
 
     public String getDescription() {
@@ -43,9 +46,7 @@ public class Product {
         return this.isImported;
     }
 
-    public Boolean getIsExempt() {
-        return this.isExempt;
-    }
+    public Double getApplicableTax() { return this.applicableTax; }
 
 }
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ReceiptTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-04-13T18:27:46" hostname="DESKTOP-NA5HFMK" time="0.066">
+  <properties/>
+  <testcase name="createReceipt()" classname="ReceiptTest" time="0.066"/>
+  <system-out><![CDATA[1 music CD: 16.490000000000002
+1 chocolate bar: 0.85
+1 imported bottle of perfume: 32.19
+Sales Taxes: 5.7
+Total: 49.53
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

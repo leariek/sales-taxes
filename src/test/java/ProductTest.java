@@ -28,8 +28,8 @@ class ProductTest {
     @Test
     void setApplicableTax(){
         Double setApplicableTax = 1.50;
-        product.setApplicableTax(setApplicableTax);
-        assertEquals(setApplicableTax, product.getApplicableTax());
+        product.setPriceWithTax(setApplicableTax);
+        assertEquals(setApplicableTax, product.getPriceWithTax());
     }
 
     @Test

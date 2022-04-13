@@ -1,7 +1,3 @@
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.List;
-
 public abstract class Product {
 
     static final String IMPORTED = "imported";
@@ -11,7 +7,7 @@ public abstract class Product {
     private int quantity;
     private Boolean isImported = false;
     private Double taxRate = 0.0;
-    private Double applicableTax = 0.0;
+    private Double priceWithTax = 0.0;
 
     public Product(int quantity, String description, Double price) {
         this.quantity = quantity;
@@ -26,8 +22,8 @@ public abstract class Product {
         }
     }
 
-    public void setApplicableTax(Double applicableTax) {
-        this.applicableTax = applicableTax;
+    public void setPriceWithTax(Double priceWithTax) {
+        this.priceWithTax = priceWithTax;
     }
 
     public String getDescription() {
@@ -46,7 +42,7 @@ public abstract class Product {
         return this.isImported;
     }
 
-    public Double getApplicableTax() { return this.applicableTax; }
+    public Double getPriceWithTax() { return this.priceWithTax; }
 
 }
 

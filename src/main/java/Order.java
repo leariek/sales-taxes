@@ -6,38 +6,15 @@ import java.util.stream.Collectors;
 public class Order {
 
     private List<Product> order = new ArrayList<Product>();
-    private static final List<String> EXEMPT_PRODUCTS = Arrays.asList("book", "chocolates", "pills");
+    private static final List<String> EXEMPT_PRODUCTS = Arrays.asList("book", "chocolate", "pills");
+
+    private Double totalWithoutTax = 0.0;
+    private Double totalTax = 0.0;
+    private Double totalWithTax = 0.0;
 
     public Order(List<String> orderContent){
-        createOrder(orderContent);
+        orderContent.stream().forEach(l -> addProduct(scanQuantity(l), scanDescription(l), scanPrice(l)));
     }
-
-    private void createOrder(List<String> orderContent){
-        orderContent.stream().forEach(l -> order.add(addProduct(scanQuantity(l), scanDescription(l), scanPrice(l))));
-
-        }
-
-        private int scanQuantity(String productInfo){
-            Pattern p = Pattern.compile("^[\\d+]*");
-            Matcher m = p.matcher(productInfo);
-            m.find();
-            return Integer.parseInt(m.group());
-        }
-
-    private String scanDescription(String productInfo){
-        Pattern p = Pattern.compile("[a-zA-Z].+(?=\\s\\d)");
-        Matcher m = p.matcher(productInfo);
-        m.find();
-        return m.group();
-    }
-
-    private Double scanPrice(String productInfo){
-        Pattern p = Pattern.compile("\\d+\\.\\d\\d");
-        Matcher m = p.matcher(productInfo);
-        m.find();
-        return Double.parseDouble(m.group());
-    }
-
 
     private Product addProduct(int quantity, String description, Double price){
         Product product;
@@ -50,8 +27,53 @@ public class Order {
         return product;
     }
 
+    private int scanQuantity(String productInfo){
+        Pattern p = Pattern.compile("^[\\d+]*");
+        Matcher m = p.matcher(productInfo);
+        m.find();
+        return Integer.parseInt(m.group());
+    }
+
+    private String scanDescription(String productInfo){
+        Pattern p = Pattern.compile("[a-zA-Z].+(?=\\sat\\s\\d)");
+        Matcher m = p.matcher(productInfo);
+        m.find();
+        return m.group();
+    }
+
+    private Double scanPrice(String productInfo){
+        Pattern p = Pattern.compile("\\d+\\.\\d\\d");
+        Matcher m = p.matcher(productInfo);
+        m.find();
+        return Double.parseDouble(m.group());
+    }
+
     public List<Product> getOrder(){
         return this.order;
+    }
+
+    public Double getTotalWithoutTax() {
+        return totalWithoutTax;
+    }
+
+    public Double getTotalTax() {
+        return totalTax;
+    }
+
+    public Double getTotalWithTax() {
+        return totalWithTax;
+    }
+
+    public void setTotalWithoutTax(Double totalWithoutTax) {
+        this.totalWithoutTax = totalWithoutTax;
+    }
+
+    public void setTotalTax(Double totalTax) {
+        this.totalTax = totalTax;
+    }
+
+    public void setTotalWithTax(Double totalWithTax) {
+        this.totalWithTax = totalWithTax;
     }
 
 }

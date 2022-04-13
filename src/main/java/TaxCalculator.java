@@ -4,21 +4,23 @@ import java.util.List;
 
 public class TaxCalculator {
 
-    private static Double IMPORT_TAX = 0.05;
-    private static Double EXEMPT_TAX = 0.0;
-    private static Double STANDARD_TAX = 0.1;
+    private static final Double IMPORT_TAX = 0.05;
+    private static final Double EXEMPT_TAX = 0.0;
+    private static final Double STANDARD_TAX = 0.1;
 
-    private Double totalWithoutTax = 0.0;
-    private Double totalTax = 0.0;
-    private Double totalWithTax = 0.0;
+    public TaxCalculator(Order order){
+        Double totalWithoutTax = 0.0;
+        Double totalTax = 0.0;
+        Double totalWithTax = 0.0;
 
-    public TaxCalculator(List<Product> products){
-
-        for(Product product:products){
-            this.totalWithoutTax = this.totalWithoutTax + (product.getQuantity() * product.getPrice());
-            this.totalTax = this.totalTax + calculateTax(product);
+        for(Product product:order.getOrder()){
+            totalWithoutTax = totalWithoutTax + (product.getQuantity() * product.getPrice());
+            totalTax = totalTax + calculateTax(product);
         }
-        this.totalWithTax = this.totalWithoutTax + this.totalTax;
+        totalWithTax = totalWithoutTax + totalTax;
+        order.setTotalTax(totalTax);
+        order.setTotalWithoutTax(totalWithoutTax);
+        order.setTotalWithTax(totalWithTax);
     }
 
     private Double calculateTax(Product product){
@@ -30,7 +32,7 @@ public class TaxCalculator {
             tax = tax + IMPORT_TAX;
         }
         Double roundedApplicableTax = roundAmount(tax * product.getPrice() * product.getQuantity());
-        product.setApplicableTax(roundedApplicableTax);
+        product.setPriceWithTax(roundedApplicableTax + product.getPrice() * product.getQuantity());
         return roundedApplicableTax;
     }
 
@@ -41,11 +43,4 @@ public class TaxCalculator {
         return bigDecimal.doubleValue();
     }
 
-    public Double getTotalTax() {
-        return totalTax;
-    }
-
-    public Double getTotalWithTax() {
-        return totalWithTax;
-    }
 }

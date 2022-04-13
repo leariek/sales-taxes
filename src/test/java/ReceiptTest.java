@@ -6,13 +6,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TaxCalculatorTest {
+class ReceiptTest {
 
-    private TaxCalculator taxCalculator;
-    private Product standardTaxProduct;
-    private Product exemptTaxProduct;
-    private Product standardImportTaxProduct;
-
+    private Receipt receipt;
 
     @BeforeEach
     void setUp() {
@@ -21,7 +17,8 @@ class TaxCalculatorTest {
         expected.add("1 chocolate bar at 0.85");
         expected.add("1 imported bottle of perfume at 27.99");
         Order order = new Order(expected);
-        taxCalculator = new TaxCalculator(order);
+        receipt = new Receipt();
     }
+
 
 }

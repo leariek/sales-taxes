@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="FileScannerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-04-13T15:58:38" hostname="DESKTOP-NA5HFMK" time="0.048">
+  <properties/>
+  <testcase name="scanOrder()" classname="FileScannerTest" time="0.048"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

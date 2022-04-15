@@ -7,6 +7,7 @@ public abstract class Product {
     private int quantity;
     private Boolean isImported = false;
     private Double taxRate = 0.0;
+
     private Double priceWithTax = 0.0;
 
     public Product(int quantity, String description, Double price) {
@@ -20,6 +21,10 @@ public abstract class Product {
         if(description.contains(IMPORTED)) {
             this.isImported = true;
         }
+    }
+
+    public void setTaxRate(Double taxRate) {
+        this.taxRate = taxRate;
     }
 
     public void setPriceWithTax(Double priceWithTax) {
@@ -44,6 +49,13 @@ public abstract class Product {
 
     public Double getPriceWithTax() { return this.priceWithTax; }
 
+    public Boolean getImported() {
+        return isImported;
+    }
+
+    public Double getTaxRate() {
+        return taxRate;
+    }
 }
 
 

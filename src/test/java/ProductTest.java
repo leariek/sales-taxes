@@ -20,11 +20,6 @@ class ProductTest {
         product = new StandardTaxProduct(quantity, description, price);
     }
 
-    @AfterEach
-    void tearDown() {
-
-    }
-
     @Test
     void setApplicableTax(){
         Double setApplicableTax = 1.50;
@@ -54,6 +49,20 @@ class ProductTest {
 
         assertTrue(importedProduct.getIsImported());
         assertFalse(product.getIsImported());
+    }
+
+    @Test
+    void setAndGetTaxRate() {
+        Double expectedTaxRate = 0.2;
+        product.setTaxRate(expectedTaxRate);
+        assertEquals(expectedTaxRate, product.getTaxRate());
+    }
+
+    @Test
+    void setAndGetPriceWithTaxRate() {
+        Double expectedPriceWithTax = 21.89;
+        product.setPriceWithTax(expectedPriceWithTax);
+        assertEquals(expectedPriceWithTax, product.getPriceWithTax());
     }
 
 }

@@ -10,7 +10,6 @@ class OrderTest {
 
     private Order order;
 
-
     @BeforeEach
     void setUp(){
         List<String> expected = new ArrayList<String>();
@@ -21,10 +20,29 @@ class OrderTest {
     }
 
     @Test
-    void getOrder() {
-        List<Product> expectedOrder = new ArrayList<Product>();
-        Product product = new StandardTaxProduct(1, "test", 6.99);
-        expectedOrder.add(product);
-        assertEquals(expectedOrder.getClass(), order.getOrder().getClass());
+    void orderAddsProductsCorrect(){
+        int size = 3;
+        assertEquals(size, order.getOrder().size());
+    }
+
+    @Test
+    void getAndSetTotalWithoutTaxIsCorrect() {
+        Double expected = 14.99;
+        order.setTotalWithoutTax(expected);
+        assertEquals(expected, order.getTotalWithoutTax());
+    }
+
+    @Test
+    void getAndSetTotalTaxIsCorrect() {
+        Double expected = 7.49;
+        order.setTotalTax(expected);
+        assertEquals(expected, order.getTotalTax());
+    }
+
+    @Test
+    void getAndSetTotalWithTaxIsCorrect() {
+        Double expected = 52.89;
+        order.setTotalWithTax(expected);
+        assertEquals(expected, order.getTotalWithTax());
     }
 }

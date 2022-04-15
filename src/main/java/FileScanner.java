@@ -22,9 +22,9 @@ public class FileScanner {
 
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.err.println("File not found: " + e);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("There is something wrong with the file: " + e);
         }
         return lines;
 

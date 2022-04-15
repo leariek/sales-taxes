@@ -24,7 +24,5 @@ class FileScannerTest {
         expected.add("1 chocolate bar at 0.85");
         expected.add("1 imported bottle of perfume at 27.99");
         assertEquals(expected, fileScanner.scanOrder(path));
-
-
     }
 }

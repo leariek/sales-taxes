@@ -1,12 +1,11 @@
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class Order {
 
     private List<Product> order = new ArrayList<Product>();
-    private static final List<String> EXEMPT_PRODUCTS = Arrays.asList("book", "chocolate", "pills");
+    private static final List<String> EXEMPT_PRODUCTS = Arrays.asList("book", "chocolate", "pill");
 
     private Double totalWithoutTax = 0.0;
     private Double totalTax = 0.0;

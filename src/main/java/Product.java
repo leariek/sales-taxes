@@ -14,10 +14,10 @@ public abstract class Product {
         this.quantity = quantity;
         this.description = description;
         this.price = price;
-        defineType(this.description);
+        setIsImported(this.description);
     }
 
-    private void defineType(String description) {
+    private void setIsImported(String description) {
         if(description.contains(IMPORTED)) {
             this.isImported = true;
         }
@@ -48,10 +48,6 @@ public abstract class Product {
     }
 
     public Double getPriceWithTax() { return this.priceWithTax; }
-
-    public Boolean getImported() {
-        return isImported;
-    }
 
     public Double getTaxRate() {
         return taxRate;

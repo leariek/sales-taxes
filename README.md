@@ -12,3 +12,6 @@
 * The output is written to console.
 
 ## build information
+* Java Version 16.0.2
+* Gradle version 7.4.2
+* The application was build and run in IntelliJ
